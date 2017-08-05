@@ -1,0 +1,24 @@
+{
+  "name": "angular-full",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pabs Monestel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.11.5",
+    "morgan": "~1.5.0",
+    "nib": "^1.1.2",
+    "passport": "^0.3.2",
+    "passport-jwt": "^1.2.1"
+  }
+}

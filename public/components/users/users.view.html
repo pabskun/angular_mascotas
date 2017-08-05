@@ -1,0 +1,95 @@
+<section>
+  <md-content layout-padding>
+    <div>
+      <form name="userForm">
+
+
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First name</label>
+            <input ng-model="userCtrl.firstName" >
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last name</label>
+            <input ng-model="userCtrl.lastName">
+          </md-input-container>
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Email</label>
+          <input ng-model="userCtrl.email">
+        </md-input-container>
+      </div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Pass</label>
+        <input type="password"ng-model="userCtrl.password">
+      </md-input-container>
+    </div>
+
+
+
+      </form>
+    </div>
+  </md-content>
+
+
+
+            <md-button ng-show="userCtrl.btnadd && userForm.$valid" ng-click="userCtrl.save(userForm)" class="btn1" >Save</md-button>
+            <md-button ng-show="userCtrl.btnedit" ng-click="userCtrl.edit()" class="btn1">Update</md-button>
+        </form>
+      </div>
+
+  </md-content>
+  </div>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+</form>
+
+<table id="tblDatos" >
+  <input type="text" id="txtApellido" placeholder="Buscar" ng-model="search">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="objUser in userCtrl.users | filter: search">
+        <td>{{objUser.firstName}}</td>
+        <td>{{objUser.lastName}}</td>
+        <td>{{objUser.email}}</td>
+        <td>{{objUser.password}}</td>
+
+        <td><button ng-click="userCtrl.delete(objUser._id)">Eliminar</button></td>
+        <td><button ng-click="userCtrl.update(objUser)">Update</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="objUser in userCtrl.users">
+      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{objUser.firstName}}</span>
+            <span class="md-subhead">{{objUser.lastName}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"><span class="glyphicon glyphicon-user"style="font-size:152px"></span></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+
+</section>

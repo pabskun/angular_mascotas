@@ -1,0 +1,16 @@
+{
+  "name": "front-end",
+  "authors": [
+    "Pabs"
+  ],
+  "description": "interfaz gráfica del proyecto",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "ng-file-upload": "^12.2.13",
+    "angular-material": "^1.1.4",
+    "angular-ui-router": "^0.4.2",
+    "bootstrap": "v4.0.0-alpha.6"
+  }
+}
