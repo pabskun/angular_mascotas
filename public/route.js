@@ -14,9 +14,9 @@
         })
         .state('pets',{
           url: '/pets',
-          templateUrl: 'components/pets/pets.view.html',
+          templateUrl: 'components/pets/pet.view.html',
           controller: 'petsController',
-          controllerAs: 'petsCtrl'
+          controllerAs: 'petCtrl'
         })
         .state('user.view1',{
           templateUrl: 'components/users/view1/view1.view.html'

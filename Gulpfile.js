@@ -43,6 +43,10 @@ gulp.task('watch', function () {
     './public/components/*.js',
     './public/components/**/*.js',
     './public/components/**/**/*.js',
+    './api/*.js',
+    './api/components/*.js',
+    './api/components/**/*.js',
+    './api/components/**/**/*.js'
   ], ['js']);
 
   gulp.watch([

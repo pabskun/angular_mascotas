@@ -19,19 +19,19 @@
 
     function _setPets(pPet){
       //users.push(pUser);
-      return $http.post('http://localhost:8000/api/pets',pPet)
+      return $http.post('http://localhost:3000/api/save_pet',pPet)
 
     }
 
     function _getPets(){
-      var lista = $http.get('http://localhost:8000/api/pets')
-      return lista;
+    
+      return $http.get('http://localhost:3000/api/get_all_pets');
     }
 
 
     function _updatePets(pPet){
       console.log(pPet);
-      return $http.put('http://localhost:8000/api/pets',pPet);
+      return $http.put('http://localhost:3000/api/pets',pPet);
     }
 
 
