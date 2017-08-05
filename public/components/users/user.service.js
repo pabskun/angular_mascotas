@@ -2,7 +2,7 @@
   angular
   .module('myApp')
   .service('userService', userService);
-
+  userService.$inject = ['$http'];
   function userService($http){
     var users = [{
       firstName: 'Pabs',
@@ -28,7 +28,9 @@
     }
 
     function _getUsers(){
+
       return $http.get('http://localhost:3000/api/users');
+
     }
 
     function _deleteUsers(id){

@@ -1,53 +1,40 @@
 (function(){
+  'use strict';
   angular
-    .module('myApp')
-    .controller('userController', userController);
-    function userController(userService){ //se inyecta el service userService en el controlador para que se tenga acceso
-      //controlador
-      var userCtrl = this; //binding del controlador con el html, solo en el controlador
+  .module('myApp')
+  .controller('userController', userController);
 
-      userCtrl.btnadd = true;
-      userCtrl.btnedit = false;
+  userController.$inject = ['userService'];
+  //se inyecta el service userService en el controlador para que se tenga acceso
+  function userController(userService){
+    //binding del controlador con el html, solo en el controlador
+    var userCtrl = this;
+    userCtrl.getUsers ={};
 
-      function init(){
-        // función que se llama así misma para indicar que sea lo primero que se ejecute
-        userService.getUsers()
-          .success(function(data){
-            userCtrl.users = data;
+    userCtrl.btnadd = true;
+    userCtrl.btnedit = false;
 
-          });
+    userService.getUsers().then(function (response) {
+      userCtrl.getUsers = response.data;
 
+    });
+
+    userCtrl.save= function(form){
+      var newUser ={
+        idicito: userService.getId(),
+        firstName : userCtrl.firstName,
+        lastName : userCtrl.lastName,
+        email : userCtrl.email,
+        password: userCtrl.password
       }
-      init();
 
-      userCtrl.save= function(form){
-        var newUser ={
-          idicito: userService.getId(),
-          firstName : userCtrl.firstName,
-          lastName : userCtrl.lastName,
-          email : userCtrl.email,
-          password: userCtrl.password
-        }
-        
-
-        userService.setUsers(newUser)
-        .success(function(data){
-          console.log(data);
-
-          userCtrl.firstName = null;
-          userCtrl.lastName = null;
-          userCtrl.email = null;
-          userCtrl.password = null;
-          init();
-
-
-        })
-
+      userService.setUsers(newUser).success(function(data){
+        console.log(data);
         userCtrl.firstName = null;
-        userService.setId(newUser.idicito);
-        console.log(newUser);
-
-      }
+        userCtrl.lastName = null;
+        userCtrl.email = null;
+        userCtrl.password = null;
+      });
 
       userCtrl.delete = function(id){
         console.log(id);
@@ -57,43 +44,9 @@
         })
       }
 
-      userCtrl.update = function(objUser){
-        userCtrl.btnadd = false;
-        userCtrl.btnedit = true;
-        userCtrl.id = objUser._id;
-        userCtrl.firstName = objUser.firstName;
-        userCtrl.lastName = objUser.lastName;
-        userCtrl.email = objUser.email;
-        userCtrl.password = objUser.password;
-
-
-      }
-      userCtrl.edit = function(){
-
-
-        var newUser ={
-          _id: userCtrl.id,
-          firstName : userCtrl.firstName,
-          lastName : userCtrl.lastName,
-          email : userCtrl.email,
-          password: userCtrl.password
-        }
-
-        userService.updateUsers(newUser)
-        .success(function(data){
-          console.log(data);
-          init();
-          userCtrl.btnadd = true;
-          userCtrl.btnedit = false;
-          userCtrl.firstName = null;
-          userCtrl.lastName = null;
-          userCtrl.email = null;
-          userCtrl.password = null;
-        })
-
-      }
+      userCtrl.firstName = null;
+      userService.setId(newUser.idicito);
+      console.log(newUser);
     }
-     //se establece un objeto de angular normal
-
-
+  }
 })();
