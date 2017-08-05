@@ -10,13 +10,13 @@
           url: '/user',
           templateUrl: 'components/users/users.view.html',
           controller: 'userController',
-          controllerAs: 'userCtrl'
+          controllerAs: 'vm'
         })
         .state('pets',{
           url: '/pets',
           templateUrl: 'components/pets/pet.view.html',
           controller: 'petsController',
-          controllerAs: 'petCtrl'
+          controllerAs: 'vm'
         })
         .state('user.view1',{
           templateUrl: 'components/users/view1/view1.view.html'

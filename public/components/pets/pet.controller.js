@@ -4,16 +4,16 @@
       .module('myApp')
       .controller('petsController', petsController);
       petsController.$inject = ['petService'];
-      
+
       function petsController(petService){ //se inyecta el service userService en el controlador para que se tenga acceso
         //controlador
-        var petCtrl = this; //binding del controlador con el html, solo en el controlador
-        petCtrl.pets = {};
+        var vm = this; //binding del controlador con el html, solo en el controlador
+        vm.pets = {};
         loadPets();
 
         function loadPets(){
           petService.getPets().then(function (response) {
-            petCtrl.pets = response.data;
+            vm.pets = response.data;
 
           });
         }
@@ -21,7 +21,7 @@
 
 
 
-        petCtrl.save= function(){
+        vm.save= function(){
           var newPet ={
             name : petCtrl.name,
             breed : petCtrl.breed,
@@ -39,21 +39,21 @@
 
 
 
-        petCtrl.update = function(objPet){
+        vm.update = function(objPet){
 
-          petCtrl.id = objPet._id;
-          petCtrl.firstName = objPet.name;
-          petCtrl.lastName = objPet.breed;
+          vm.id = objPet._id;
+          vm.firstName = objPet.name;
+          vm.lastName = objPet.breed;
 
 
         }
-        petCtrl.edit = function(){
+        vm.edit = function(){
 
 
           var newPet ={
-            _id: petCtrl.id,
-            name : petCtrl.name,
-            breed : petCtrl.breed
+            _id: vm.id,
+            name : vm.name,
+            breed : vm.breed
           }
 
           petService.updatePets(newPet)
@@ -61,8 +61,8 @@
             console.log(data);
             init();
 
-            petCtrl.name = null;
-            petCtrl.breed = null;
+            vm.name = null;
+            vm.breed = null;
 
           })
 

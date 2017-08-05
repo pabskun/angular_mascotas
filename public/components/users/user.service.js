@@ -13,9 +13,8 @@
       setUsers : _setUsers,
       getUsers : _getUsers,
       deleteUsers : _deleteUsers,
-      updateUsers : _updateUsers,
-      getId : _getId,
-      setId: _setId
+      updateUsers : _updateUsers
+
 
     };
     return publicAPI; // todas las funciones que sean llamadas por ajax deben estar debajo del return, para que ciuando angular corra el script haga el return y devuelva el api , las funciones debajo del return son privadas y se devuelve el api que es el que contiene las funciones
@@ -41,19 +40,7 @@
       return $http.put('http://localhost:3000/api/users',pUser);
     }
 
-    function _getId(){
-      var id = Number(localStorage.getItem('id'));
-      if(id==null){
-        id = 0;
-      }else{
-        id++;
-      }
-      return id;
-    }
-    function _setId(pid){
-    localStorage.setItem('id', pid);
 
-    }
 
   }
 

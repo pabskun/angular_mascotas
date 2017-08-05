@@ -8,35 +8,34 @@
   //se inyecta el service userService en el controlador para que se tenga acceso
   function userController(userService){
     //binding del controlador con el html, solo en el controlador
-    var userCtrl = this;
-    userCtrl.getUsers ={};
+    var vm = this;
+    vm.getUsers ={};
 
-    userCtrl.btnadd = true;
-    userCtrl.btnedit = false;
+    vm.btnadd = true;
+    vm.btnedit = false;
 
     userService.getUsers().then(function (response) {
-      userCtrl.getUsers = response.data;
+      vm.getUsers = response.data;
 
     });
 
-    userCtrl.save= function(form){
+    vm.save= function(form){
       var newUser ={
-        idicito: userService.getId(),
-        firstName : userCtrl.firstName,
-        lastName : userCtrl.lastName,
-        email : userCtrl.email,
-        password: userCtrl.password
+        firstName : vm.firstName,
+        lastName : vm.lastName,
+        email : vm.email,
+        password: vm.password
       }
 
       userService.setUsers(newUser).success(function(data){
         console.log(data);
-        userCtrl.firstName = null;
-        userCtrl.lastName = null;
-        userCtrl.email = null;
-        userCtrl.password = null;
+        vm.firstName = null;
+        vm.lastName = null;
+        vm.email = null;
+        vm.password = null;
       });
 
-      userCtrl.delete = function(id){
+      vm.delete = function(id){
         console.log(id);
         userService.deleteUsers(id)
         .success(function(data){
@@ -44,8 +43,7 @@
         })
       }
 
-      userCtrl.firstName = null;
-      userService.setId(newUser.idicito);
+      vm.firstName = null;
       console.log(newUser);
     }
   }

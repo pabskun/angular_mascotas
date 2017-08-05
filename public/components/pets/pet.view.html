@@ -2,9 +2,9 @@
   <h3>Pets</h3>
   <form name="petForm">
 
-    <input type="text" ng-model="petCtrl.name">
-    <input type="text" ng-model="petCtrl.breed">
-    <md-button ng-click="petCtrl.save(petForm)">Save</md-button>
+    <input type="text" ng-model="vm.name">
+    <input type="text" ng-model="vm.breed">
+    <md-button ng-click="vm.save(petForm)">Save</md-button>
 
   </form>
 
@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="pet in petCtrl.pets">
+      <tr ng-repeat="pet in vm.pets">
         <td>{{pet.name}}</td>
         <td>{{pet.breed}}</td>
       </tr>

@@ -8,22 +8,22 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>First name</label>
-            <input ng-model="userCtrl.firstName" >
+            <input ng-model="vm.firstName" >
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Last name</label>
-            <input ng-model="userCtrl.lastName">
+            <input ng-model="vm.lastName">
           </md-input-container>
         </div>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Email</label>
-          <input ng-model="userCtrl.email">
+          <input ng-model="vm.email">
         </md-input-container>
       </div>
       <md-input-container class="md-block" flex-gt-sm>
         <label>Pass</label>
-        <input type="password"ng-model="userCtrl.password">
+        <input type="password"ng-model="vm.password">
       </md-input-container>
     </div>
 
@@ -35,8 +35,8 @@
 
 
 
-            <md-button ng-show="userCtrl.btnadd && userForm.$valid" ng-click="userCtrl.save(userForm)" class="btn1" >Save</md-button>
-            <md-button ng-show="userCtrl.btnedit" ng-click="userCtrl.edit()" class="btn1">Update</md-button>
+            <md-button ng-show="vm.btnadd && userForm.$valid" ng-click="vm.save(userForm)" class="btn1" >Save</md-button>
+            <md-button ng-show="vm.btnedit" ng-click="vm.edit()" class="btn1">Update</md-button>
         </form>
       </div>
 
@@ -60,20 +60,20 @@ Use of this source code is governed by an MIT-style license that can be foundin 
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="objUser in userCtrl.users | filter: search">
+    <tr ng-repeat="objUser in vm.users | filter: search">
         <td>{{objUser.firstName}}</td>
         <td>{{objUser.lastName}}</td>
         <td>{{objUser.email}}</td>
         <td>{{objUser.password}}</td>
 
-        <td><button ng-click="userCtrl.delete(objUser._id)">Eliminar</button></td>
-        <td><button ng-click="userCtrl.update(objUser)">Update</button></td>
+        <td><button ng-click="vm.delete(objUser._id)">Eliminar</button></td>
+        <td><button ng-click="vm.update(objUser)">Update</button></td>
     </tr>
   </tbody>
 </table>
 
 <md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="objUser in userCtrl.getUsers">
+    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="objUser in vm.getUsers">
       <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
         <md-card-title>
           <md-card-title-text>
