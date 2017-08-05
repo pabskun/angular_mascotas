@@ -1,40 +1,37 @@
 (function(){
   angular
   .module('myApp')
-  .service('userService', userService);
+  .service('petService', petService);
 
-  function userService($http){
-    var users = [{
-      firstName: 'Pabs',
-      lastName:'Mon',
-      age:29
+  function petService($http){
+    var pets = [{
+      name: 'Athos',
+      breed:'Cat'
     }];
     var publicAPI = {
-      setUsers : _setUsers,
-      getUsers : _getUsers,
-      deleteUsers : _deleteUsers,
-      updateUsers : _updateUsers
+      setPets : _setPets,
+      getPets : _getPets,
+      updatePets : _updatePets
 
     };
     return publicAPI; // todas las funciones que sean llamadas por ajax deben estar debajo del return, para que ciuando angular corra el script haga el return y devuelva el api , las funciones debajo del return son privadas y se devuelve el api que es el que contiene las funciones
 
 
-    function _setUsers(pUser){
+    function _setPets(pPet){
       //users.push(pUser);
-      return $http.post('http://localhost:8000/api/users',pUser)
+      return $http.post('http://localhost:8000/api/pets',pPet)
 
     }
 
-    function _getUsers(){
-      return $http.get('http://localhost:8000/api/users');
+    function _getPets(){
+      var lista = $http.get('http://localhost:8000/api/pets')
+      return lista;
     }
 
-    function _deleteUsers(id){
-      return $http.delete('http://localhost:8000/api/users/' + id);
-    }
-    function _updateUsers(pUser){
-      console.log(pUser);
-      return $http.put('http://localhost:8000/api/users',pUser);
+
+    function _updatePets(pPet){
+      console.log(pPet);
+      return $http.put('http://localhost:8000/api/pets',pPet);
     }
 
 

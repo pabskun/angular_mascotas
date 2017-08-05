@@ -1,3 +1,26 @@
 <section>
   <h3>Pets</h3>
+  <form name="petForm">
+
+    <input type="text" ng-model="petCtrl.name">
+    <input type="text" ng-model="petCtrl.breed">
+    <md-button ng-click="petCtrl.save(petForm)">Save</md-button>
+
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Breed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pet in petCtrl.pets">
+        <td>{{pet.name}}</td>
+        <td>{{pet.breed}}</td>
+      </tr>
+    </tbody>
+  </table>
+
 </section>

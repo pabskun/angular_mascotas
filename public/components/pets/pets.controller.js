@@ -1,81 +1,65 @@
 (function(){
   angular
     .module('myApp')
-    .controller('userController', userController);
-    function userController(userService){ //se inyecta el service userService en el controlador para que se tenga acceso
+    .controller('petsController', petsController);
+    function petsController(petService){ //se inyecta el service userService en el controlador para que se tenga acceso
       //controlador
-      var userCtrl = this; //binding del controlador con el html, solo en el controlador
-      userCtrl.btnadd = true;
-      userCtrl.btnedit = false;
+      var petCtrl = this; //binding del controlador con el html, solo en el controlador
+
 
       function init(){ // función que se llama así misma para indicar que sea lo primero que se ejecute
-        userService.getUsers()
+        petService.getPets()
           .success(function(data){
-            userCtrl.users = data;
+            petCtrl.pets = data;
 
           });
       }
       init();
 
-      userCtrl.save= function(){
-        var newUser ={
-          firstName : userCtrl.firstName,
-          lastName : userCtrl.lastName,
-          email : userCtrl.email,
-          password: userCtrl.password
+      petCtrl.save= function(){
+        var newPet ={
+          name : petCtrl.name,
+          breed : petCtrl.breed,
         }
 
-        userService.setUsers(newUser)
+        petService.setPets(newPet)
         .success(function(data){
           console.log(data);
           init();
-          userCtrl.firstName = null;
-          userCtrl.lastName = null;
-          userCtrl.email = null;
-          userCtrl.password = null;
+          petCtrl.name = null;
+          petCtrl.breed = null;
+
         })
 
       }
 
-      userCtrl.delete = function(id){
-        console.log(id);
-        userService.deleteUsers(id)
-        .success(function(data){
-          init();
-        })
-      }
 
-      userCtrl.update = function(objUser){
-        userCtrl.btnadd = false;
-        userCtrl.btnedit = true;
-        userCtrl.id = objUser._id;
-        userCtrl.firstName = objUser.firstName;
-        userCtrl.lastName = objUser.lastName;
-        userCtrl.email = objUser.email;
-        userCtrl.password = objUser.password;
+
+      petCtrl.update = function(objPet){
+
+        petCtrl.id = objPet._id;
+        petCtrl.firstName = objPet.name;
+        petCtrl.lastName = objPet.breed;
+
 
       }
-      userCtrl.edit = function(){
+      petCtrl.edit = function(){
 
 
-        var newUser ={
-          _id: userCtrl.id,
-          firstName : userCtrl.firstName,
-          lastName : userCtrl.lastName,
-          email : userCtrl.email,
-          password: userCtrl.password
+        var newPet ={
+          _id: petCtrl.id,
+          name : petCtrl.name,
+          breed : petCtrl.breed
         }
 
-        userService.updateUsers(newUser)
+        petService.updatePets(newPet)
         .success(function(data){
           console.log(data);
           init();
-          userCtrl.btnadd = true;
-          userCtrl.btnedit = false;
-          userCtrl.firstName = null;
-          userCtrl.lastName = null;
-          userCtrl.email = null;
-          userCtrl.password = null;
+
+          petCtrl.name = null;
+          petCtrl.breed = null;
+
         })
 
       }
