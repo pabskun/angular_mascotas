@@ -42,9 +42,21 @@ module.exports.remove = function(req,res){
 
 }
 module.exports.update = function(req,res){
-  console.log(req.body.id);
-  User.findByIdAndUpdate(req.body._id,{$set:req.body}).then(function(data){
-    res.json({success:true,msg:'Se ha actualizado correctamente.'});
+  // console.log(req.body.id);
+  // User.findByIdAndUpdate(req.body._id,{$set:req.body}).then(function(data){
+  //   res.json({success:true,msg:'Se ha actualizado correctamente.' + res});
+  // });
+
+  User.findByIdAndUpdate(req.body._id, { $set: req.body}, function (err, user) {
+    if (err){
+      res.json({success:true,msg:'No se ha actualizado.' + handleError(err)});
+
+    } else{
+      res.json({success:true,msg:'Se ha actualizado correctamente.' + res});
+    }
+
   });
+
+
 
 }

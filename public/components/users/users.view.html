@@ -36,7 +36,7 @@
 
 
             <md-button ng-show="vm.btnadd && userForm.$valid" ng-click="vm.save(userForm)" class="btn1" >Save</md-button>
-            <md-button ng-show="vm.btnedit" ng-click="vm.edit()" class="btn1">Update</md-button>
+            <md-button ng-show="vm.btnedit" ng-click="vm.update()" class="btn1">Update</md-button>
         </form>
       </div>
 
@@ -60,14 +60,14 @@ Use of this source code is governed by an MIT-style license that can be foundin 
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="objUser in vm.users | filter: search">
+    <tr ng-repeat="objUser in vm.getUsers | filter: search">
         <td>{{objUser.firstName}}</td>
         <td>{{objUser.lastName}}</td>
         <td>{{objUser.email}}</td>
         <td>{{objUser.password}}</td>
 
         <td><button ng-click="vm.delete(objUser._id)">Eliminar</button></td>
-        <td><button ng-click="vm.update(objUser)">Update</button></td>
+        <td><button ng-click="vm.showInfoUpdate(objUser)">Update</button></td>
     </tr>
   </tbody>
 </table>

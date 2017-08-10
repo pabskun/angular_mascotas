@@ -36,8 +36,8 @@
       return $http.delete('http://localhost:3000/api/users/' + id);
     }
     function _updateUsers(pUser){
-      console.log(pUser);
-      return $http.put('http://localhost:3000/api/users',pUser);
+
+      return $http.put('http://localhost:3000/api/update_user',pUser);
     }
 
 

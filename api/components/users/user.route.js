@@ -24,7 +24,7 @@ router.route('/users/:id')
   .delete(function(req, res){
     userController.remove(req,res);
  	});
-router.route('/users')
+router.route('/update_user')
   .put(function(req, res){
     userController.update(req,res);
  	});
